@@ -1,13 +1,10 @@
-import { FC, ChangeEvent } from 'react';
+import { FC } from 'react';
 import CustomerSupportUrl from '../assets/customerSupport.png';
-import { StepInput } from "../models/Step";
 import { makeStyles } from '@material-ui/core/styles';
 import { UserInputs } from "../models/UserInputs";
 import { useHistory } from 'react-router-dom';
 
-
 const RADIO_BUTTON_GROUP = "hackedBefore";
-
 
 interface Props {
     handleChange?: (name:  string, checked: boolean | string)=> void;

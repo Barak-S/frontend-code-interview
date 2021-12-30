@@ -9,14 +9,9 @@ import MainScreens from './Screens';
 const App: FC = () => {
     const [userInput, setUserInput] = useState<UserInputs>({})
 
-    useEffect(()=>{
-        console.log(userInput)
-    }, [userInput])
-
     const handleChange = (name: string, value: boolean | string) => {
         setUserInput(userInput => ({...userInput, [name]: value}))
     }
-
     
     return (
         <MuiThemeProvider theme={theme}>

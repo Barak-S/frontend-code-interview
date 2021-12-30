@@ -3,9 +3,7 @@ import CustomerSupportUrl from '../assets/customerSupport.png';
 import { StepInput } from "../models/Step";
 import { UserInputs } from '../models/UserInputs';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-    useHistory
-  } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const INPUT_ID = "instagramUsername";
 
@@ -22,7 +20,8 @@ export const InstagramUsername: FC<Props> = ({userInput, handleChange}) => {
         event.preventDefault();
         const {'instagramUsername': {value}} = event.target as unknown as { "instagramUsername": { value: string } };
         handleChange && handleChange('instagramUsername', value)
-        history.push('/isThisYou')
+        if (value.length)
+            history.push('/isThisYou')
     }
 
     useEffect(()=>{
@@ -39,7 +38,7 @@ export const InstagramUsername: FC<Props> = ({userInput, handleChange}) => {
                     What is your Instagram username?
                 </header>
                 <form onSubmit={submitForm} className={classes.formWrapper}>
-                    <input className={classes.input} type="text" id={INPUT_ID}/>
+                    <input placeholder='@USERNAME' className={classes.input} type="text" id={INPUT_ID}/>
                     <input className={classes.submit} type="submit" value="Next"/>
                 </form>
             </div>
@@ -75,7 +74,10 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
         height: 60,
         maxWidth: 246,
-        marginTop: 36
+        marginTop: 36,
+        border: `1px solid #ECECEC`,
+        borderRadius: 8,
+        paddingLeft: 6,
     },
     submit: {
         width: '100%',

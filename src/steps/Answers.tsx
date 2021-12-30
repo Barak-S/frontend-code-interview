@@ -13,11 +13,11 @@ interface Props {
 export const Answers: FC<Props> = ({ userInput }) => {
     const history = useHistory();
 
-    // useEffect(()=>{
-    //     if (!userInput.hackedBefore && !userInput.instagramUsername && !userInput.isThisYou){
-    //         history.push('/')
-    //     }
-    // }, [history, userInput])
+    useEffect(()=>{
+        if (userInput.hackedBefore === undefined && userInput.instagramUsername === undefined && userInput.isThisYou === undefined){
+            history.push('/')
+        }
+    }, [history, userInput])
     
     return (
         <div>
