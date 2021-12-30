@@ -1,19 +1,33 @@
-import {useState} from 'react'
-import {UserInputs} from "./models/UserInputs";
-import {HackedBefore} from "./steps/EverBeenHacked";
-import {InstagramUsername} from "./steps/InstagramUsername";
-import {IsThisYou} from "./steps/IsThisYou";
+import React, { FC, useEffect, useState, ChangeEvent, MouseEvent } from 'react';
+import { UserInputs } from "./models/UserInputs";
+import { BrowserRouter as Router } from 'react-router-dom';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import { CssBaseline } from '@material-ui/core';
+import theme from './assets/themes/theme';
+import MainScreens from './Screens';
 
-function App() {
+const App: FC = () => {
     const [userInput, setUserInput] = useState<UserInputs>({})
 
+    useEffect(()=>{
+        console.log(userInput)
+    }, [userInput])
+
+    const handleChange = (name: string, value: boolean | string) => {
+        setUserInput(userInput => ({...userInput, [name]: value}))
+    }
+
+    
     return (
-        <main style={{display: 'flex', flexDirection: 'column', gap: '2.5rem'}}>
-            <HackedBefore userInput={userInput} setUserInput={setUserInput}/>
-            <InstagramUsername userInput={userInput} setUserInput={setUserInput}/>
-            <IsThisYou userInput={userInput} setUserInput={setUserInput}/>
-            Answers: {JSON.stringify(userInput)}
-        </main>
+        <MuiThemeProvider theme={theme}>
+            <CssBaseline />
+            <Router>
+                <MainScreens 
+                    userInput={userInput} 
+                    handleChange={handleChange}
+                />
+            </Router>
+        </MuiThemeProvider>
     );
 }
 
